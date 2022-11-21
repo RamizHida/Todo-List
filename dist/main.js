@@ -1,0 +1,1 @@
+(()=>{"use strict";const t=new class{constructor(t,i,e,s){this.title=t,this.description=i,this.dueDate=e,this.priority=s}edit(){}delete(){}}("Email","Send email to buyers","Friday","High");console.log(t)})();
