@@ -4,6 +4,7 @@ let errorDiv = document.createElement("div");
 let errorMessage = document.createElement("h2");
 
 let numOfProjects = 0;
+let datanum = 0;
 
 export function displayNewProject() {
   let projectDiv = document.createElement("div");
@@ -22,6 +23,7 @@ export function displayNewProject() {
   projectDiv.style.display = "flex";
 
   submitBtn.addEventListener("click", function () {
+    datanum++;
     if (numOfProjects > 6) {
       projectDiv.style.display = "none";
       projectError("Maximum Number of Projects Reached");
@@ -31,10 +33,12 @@ export function displayNewProject() {
     let nameOfPro = document.getElementsByTagName("input")[0].value;
     let nameofProFormatted = nameOfPro.trim();
     if (nameofProFormatted.length === 0) {
+      datanum--;
       return projectError("Project Title Cannot Be Empty");
     }
     let titleContainer = document.createElement("div");
     titleContainer.setAttribute("id", "proj-title");
+    titleContainer.setAttribute("data-ID", datanum);
     let displayProjectTitle = document.createElement("h2");
     displayProjectTitle.textContent = nameofProFormatted;
     titleContainer.appendChild(displayProjectTitle);
