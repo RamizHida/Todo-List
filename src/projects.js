@@ -19,10 +19,10 @@ export function displayNewProject() {
   submitBtn.textContent = "Submit";
   submitBtn.setAttribute("id", "submit");
 
-  submitBtn.addEventListener("click", function () {
-    numOfProjects++;
+  projectDiv.style.display = "flex";
 
-    if (numOfProjects > 8) {
+  submitBtn.addEventListener("click", function () {
+    if (numOfProjects > 6) {
       projectDiv.style.display = "none";
       projectError("Maximum Number of Projects Reached");
       return;
@@ -42,13 +42,17 @@ export function displayNewProject() {
 
     addProjBtn.style.display = "block";
     projectContainer.appendChild(titleContainer);
+    numOfProjects++;
   });
 
   let cancelBtn = document.createElement("button");
   cancelBtn.textContent = "Cancel";
   cancelBtn.setAttribute("id", "delete");
 
-  //   cancelBtn.addEventListener("cick", deleteProj);
+  cancelBtn.addEventListener("click", function () {
+    addProjBtn.style.display = "block";
+    projectContainer.removeChild(projectDiv);
+  });
 
   projectDiv.appendChild(projectInput);
   projectDiv.appendChild(submitBtn);
@@ -83,24 +87,6 @@ function undoProjectError() {
   document.body.removeChild(errorDiv);
   errorMessage.textContent = "";
 }
-
-// // Displaying Max Projects reached
-// function maxProjectsError() {
-//   document.body.style.background = "black";
-//   document.querySelector(".left--container").style.display = "none";
-//   errorDiv.setAttribute("id", "error");
-//   errorMessage.textContent = "Maximum Number of Projects Reached";
-//   errorDiv.appendChild(errorMessage);
-//   document.body.appendChild(errorDiv);
-//   setTimeout(undoMaxProjectError, 2500);
-// }
-
-// function undoMaxProjectError() {
-//   document.querySelector(".left--container").style.display = "flex";
-//   document.body.style.background = "#cbd5e1";
-//   document.body.removeChild(errorDiv);
-//   errorMessage.textContent = "";
-// }
 
 // make projects appear under Add project button
 // Create add task button
