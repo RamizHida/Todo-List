@@ -1,8 +1,9 @@
 import { Todo } from "./create.todo";
-import { displayNewProject } from "./projects";
-
-const fist = new Todo("Emails", "Send email to buyers", "Friday", "High");
+import { createForm } from "../createForm";
+import { displayNewProject, addTaskBtn } from "./projects";
 
 const projectBtn = document.querySelector("#project");
 
 projectBtn.addEventListener("click", displayNewProject);
+
+addTaskBtn.addEventListener("click", createForm);

@@ -1,3 +1,4 @@
+import { listContainer, displayList } from "../createForm";
 const projectContainer = document.querySelector(".project--container");
 export const addProjBtn = document.querySelector("#project");
 let errorDiv = document.createElement("div");
@@ -83,18 +84,23 @@ function projectError(message) {
   errorMessage.textContent = message;
   errorDiv.appendChild(errorMessage);
   document.body.appendChild(errorDiv);
+  if (listContainer.hasChildNodes()) {
+    var children = listContainer.children;
+    for (var i = 0; i < children.length; i++) {
+      var child = children[i];
+      child.style.display = "none";
+    }
+  }
   setTimeout(undoProjectError, 2500);
 }
 
 // Undoing empty Project error
 function undoProjectError() {
   document.querySelector(".left--container").style.display = "flex";
-  document.body.style.background = "#cbd5e1";
+  document.body.style.background = "rgb(203, 213, 225)";
   document.body.removeChild(errorDiv);
+  if (listContainer.hasChildNodes()) {
+    displayList(listContainer);
+  }
   addTaskBtn.style.display = "flex";
 }
-
-// make projects appear under Add project button
-// Create add task button
-// Display task on UI
-// Add edit and delete features on each task and project
