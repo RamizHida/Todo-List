@@ -138,3 +138,66 @@ input {
   padding: 5rem;
   font-size: 2rem;
 }
+
+/* Add task */
+.add--task {
+  background: #a21caf;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  right: 1%;
+  top: 13%;
+}
+
+/* Form */
+.form {
+  position: absolute;
+  top: 40%;
+  right: 30%;
+}
+
+.form {
+  border-radius: 1rem;
+  background: rgb(26, 204, 16);
+  background: linear-gradient(
+    27deg,
+    rgba(26, 204, 16, 1) 0%,
+    rgba(162, 28, 175, 1) 77%
+  );
+  display: grid;
+  width: 40rem;
+  height: 30rem;
+  grid-template-columns: 1fr 1fr;
+  color: #fff;
+  font-size: 1.6rem;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+select {
+  height: 4rem;
+  width: 18rem;
+  border-radius: 0.5rem;
+}
+
+#cancel--task,
+#submit--task {
+  background: #334155;
+  width: 10rem;
+  justify-self: center;
+}
+
+#cancel--task {
+  background: #ef4444;
+}
+
+#submit--task {
+  background: #16a34a;
+}
