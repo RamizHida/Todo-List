@@ -1,10 +1,47 @@
 import { Todo, todoContainer } from "./src/create.todo";
-import { addTaskBtn, addProjBtn } from "./src/projects";
+import {
+  addTaskBtn,
+  addProjBtn,
+  projectError,
+  projectContainer,
+} from "./src/projects";
+
+export let taskNotification = document.querySelector("#task--notification");
 
 export let listContainer = document.querySelector(".list--container");
+export let container = document.createElement("div");
+export let allListsItems = document.querySelector("#all--list--items");
 
 export function createForm() {
-  let container = document.createElement("div");
+  taskNotification.style.display = "none";
+  allListsItems.style.display = "none";
+
+  if (!projectContainer.hasChildNodes()) {
+    return projectError("Please Create a Project First");
+  }
+
+  if (allPurple()) {
+    setTimeout(function () {
+      allListsItems.style.display = "block";
+    }, 2500);
+    return projectError("Please Select a Project First");
+  }
+
+  function findDataId() {
+    for (
+      let child = projectContainer.firstChild;
+      child !== null;
+      child = child.nextSibling
+    ) {
+      if (child.style.background == "purple") {
+        // console.log("poo");
+      }
+      if (child.style.background === "red") {
+        return child.getAttribute("data-id");
+      }
+    }
+  }
+
   container.classList.add("form--container");
 
   let form = document.createElement("form");
@@ -94,6 +131,7 @@ export function createForm() {
   addProjBtn.style.display = "none";
 
   submitTask.addEventListener("click", function (e) {
+    taskNotification.style.display = "block";
     e.preventDefault();
     todoContainer.push(
       new Todo(
@@ -109,18 +147,14 @@ export function createForm() {
       dateInput.value,
       selectPri.value
     );
-    console.log(todoContainer);
+    // console.log(todoContainer);
     document.body.removeChild(container);
     addTaskBtn.style.display = "flex";
     addProjBtn.style.display = "block";
-
-    // display list in UI
-    if (listContainer.hasChildNodes()) {
-      displayList(listContainer);
-    }
   });
 
   cancelTask.addEventListener("click", function () {
+    allListsItems.style.display = "block";
     document.body.removeChild(container);
     addTaskBtn.style.display = "flex";
     addProjBtn.style.display = "block";
@@ -133,6 +167,7 @@ export function createForm() {
 
   function displayTodo(title, description, dueDate, priorty) {
     todoCap.classList.add("todo--cap");
+    todoCap.setAttribute("data-id", findDataId());
     let todoTitle = document.createElement("h2");
     todoTitle.textContent = "Title";
     let todoDescription = document.createElement("h2");
@@ -145,10 +180,12 @@ export function createForm() {
     let todoTitleContent = document.createElement("p");
     todoTitleContent.textContent = title;
     let todoDescriptionContent = document.createElement("p");
+    todoDescriptionContent.setAttribute("id", "description--to--do");
     todoDescriptionContent.textContent = description;
     let todoDueDateContent = document.createElement("p");
     todoDueDateContent.textContent = dueDate;
     let todoPriorityContent = document.createElement("p");
+    todoPriorityContent.setAttribute("id", "priority--to--do");
     todoPriorityContent.textContent = priorty;
     let todoDeleteCap = document.createElement("div");
     todoDeleteCap.setAttribute("id", "delete--todo--container");
@@ -187,4 +224,15 @@ export function displayList(element) {
     var child = children[i];
     child.style.display = "grid";
   }
+}
+
+function allPurple() {
+  for (
+    let child = projectContainer.firstChild;
+    child !== null;
+    child = child.nextSibling
+  ) {
+    if (child.style.background == "red") return false;
+  }
+  return true;
 }

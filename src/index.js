@@ -1,4 +1,3 @@
-import { Todo } from "./create.todo";
 import { createForm } from "../createForm";
 import { displayNewProject, addTaskBtn } from "./projects";
 
