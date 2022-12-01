@@ -124,11 +124,12 @@ input {
 /* Error */
 #error {
   background: red;
+  border-radius: 1rem;
   width: 20rem;
   text-align: center;
   color: white;
   position: absolute;
-  top: 50%;
+  top: 25%;
   right: 40%;
   padding: 5rem;
   font-size: 2rem;
@@ -212,8 +213,10 @@ select {
     rgba(175, 28, 93, 1) 77%
   );
   display: grid;
-  grid-template-columns: 2fr 3fr 1fr 1fr;
+  grid-template-columns: 2fr 3fr 2fr 1fr;
+  grid-template-rows: 1fr 3fr;
   width: 45rem;
+  height: 16rem;
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 1rem;
@@ -224,13 +227,23 @@ select {
 .todo--cap h2 {
   color: #f5f5f5;
   margin-left: 1rem;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
 .todo--cap p {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin: 0;
   padding: 0.5rem 1rem;
+}
+
+#description--to--do {
+  overflow: auto;
+  grid-column: 2/3;
+  grid-row: 2 / 4;
+}
+
+#priority--to--do {
+  text-align: center;
 }
 
 #delete--todo--container {
@@ -248,4 +261,43 @@ select {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+/* none error notfications */
+#task--notification {
+  position: absolute;
+  left: 21%;
+  width: 20rem;
+  text-align: center;
+  top: 10%;
+  color: white;
+  font-size: 1.6rem;
+  background: rgb(117, 16, 204);
+  background: linear-gradient(
+    27deg,
+    rgba(117, 16, 204, 1) 0%,
+    rgba(175, 28, 93, 1) 77%
+  );
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: none;
+}
+
+#all--list--items {
+  position: absolute;
+  width: 20rem;
+  text-align: center;
+  top: 12%;
+  right: 65%;
+  color: white;
+  font-size: 1.6rem;
+  background: rgb(117, 16, 204);
+  background: linear-gradient(
+    27deg,
+    rgba(117, 16, 204, 1) 0%,
+    rgba(175, 28, 93, 1) 77%
+  );
+  padding: 0.5rem;
+  border-radius: 1rem;
+  display: none;
 }
