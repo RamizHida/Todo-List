@@ -301,3 +301,12 @@ select {
   border-radius: 1rem;
   display: none;
 }
+
+/*  */
+#delete--project--btn {
+  font-size: 2.5rem;
+}
+
+#delete--project--btn:hover {
+  background: red;
+}

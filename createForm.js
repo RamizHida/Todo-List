@@ -4,6 +4,7 @@ import {
   addProjBtn,
   projectError,
   projectContainer,
+  deleteProject,
 } from "./src/projects";
 
 export let taskNotification = document.querySelector("#task--notification");
@@ -34,7 +35,6 @@ export function createForm() {
       child = child.nextSibling
     ) {
       if (child.style.background == "purple") {
-        // console.log("poo");
       }
       if (child.style.background === "red") {
         return child.getAttribute("data-id");
@@ -129,6 +129,7 @@ export function createForm() {
   // Momentarily pausing other functionality
   addTaskBtn.style.display = "none";
   addProjBtn.style.display = "none";
+  deleteProject.style.display = "none";
 
   submitTask.addEventListener("click", function (e) {
     taskNotification.style.display = "block";
@@ -147,14 +148,15 @@ export function createForm() {
       dateInput.value,
       selectPri.value
     );
-    // console.log(todoContainer);
     document.body.removeChild(container);
     addTaskBtn.style.display = "flex";
     addProjBtn.style.display = "block";
+    deleteProject.style.display = "block";
   });
 
   cancelTask.addEventListener("click", function () {
     allListsItems.style.display = "block";
+    deleteProject.style.display = "block";
     document.body.removeChild(container);
     addTaskBtn.style.display = "flex";
     addProjBtn.style.display = "block";

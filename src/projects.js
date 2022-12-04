@@ -9,12 +9,14 @@ export const addProjBtn = document.querySelector("#project");
 let errorDiv = document.createElement("div");
 let errorMessage = document.createElement("h2");
 export let addTaskBtn = document.querySelector(".add--task");
+export let deleteProject = document.querySelector("#delete--project--btn");
 
 let numOfProjects = 0;
 export let datanum = 0;
 
 export function displayNewProject() {
   allListsItems.style.display = "none";
+  deleteProject.style.display = "none";
 
   let projectDiv = document.createElement("div");
   projectDiv.classList.add("project--list");
@@ -33,6 +35,7 @@ export function displayNewProject() {
 
   submitBtn.addEventListener("click", function () {
     allListsItems.style.display = "none";
+    deleteProject.style.display = "block";
 
     if (numOfProjects > 8) {
       projectDiv.style.display = "none";
@@ -73,6 +76,7 @@ export function displayNewProject() {
 
   cancelBtn.addEventListener("click", function () {
     addProjBtn.style.display = "block";
+    deleteProject.style.display = "block";
     projectContainer.removeChild(projectDiv);
   });
 
@@ -161,6 +165,115 @@ function displayCorrectList(project) {
       } else {
         child.style.display = "grid";
       }
+    }
+  }
+}
+
+deleteProject.addEventListener("click", function () {
+  let projectMarked = false;
+  let deletedProject;
+  // check to see if no project in directory
+  if (projectContainer.firstChild == null)
+    return projectError("No Projects Currently In Inventory");
+
+  // find marked projected
+  for (
+    let projectChild = projectContainer.firstChild;
+    projectChild != null;
+    projectChild = projectChild.nextSibling
+  ) {
+    if (
+      projectChild.style.background == "red" &&
+      projectChild.getAttribute("data-id")
+    ) {
+      // projecte was choosen
+      projectMarked = true;
+      deletedProject = projectChild;
+    }
+  }
+
+  // no project choosen
+  if (!projectMarked) {
+    return projectError("Please Choose Project To Delete");
+  }
+  datanum--;
+
+  if (
+    deletedProject == projectContainer.lastChild &&
+    listContainer.firstChild == null
+  ) {
+    projectContainer.removeChild(deletedProject);
+    numOfProjects--;
+    return;
+  }
+
+  // project was choosen
+  if (projectMarked) {
+    numOfProjects--;
+    // update datanum so new added projects/tasks will have correct data-id
+
+    // check if chosen project was the last project. if so, no project data-id update required for project list or listIem-id update needed
+    if (deletedProject.nextSibling == null) {
+      //remove all correct list items
+      removeAllApproraiteListItems(deletedProject.getAttribute("data-id"));
+      // remove marked project
+      projectContainer.removeChild(deletedProject);
+      return;
+    }
+    // if chosen project was not the last project, update data-id of all projects (including the firstChild of each project) after chosen project
+    if (deletedProject.nextSibling !== null) {
+      for (
+        let projectAfterDeletedProject = deletedProject.nextSibling;
+        projectAfterDeletedProject !== null;
+        projectAfterDeletedProject = projectAfterDeletedProject.nextSibling
+      ) {
+        let updatedDataId =
+          projectAfterDeletedProject.getAttribute("data-id") - 1;
+        projectAfterDeletedProject.setAttribute("data-id", updatedDataId);
+        projectAfterDeletedProject.firstChild.setAttribute(
+          "data-id",
+          updatedDataId
+        );
+      }
+      //remove all correct list items
+      removeAllApproraiteListItems(deletedProject.getAttribute("data-id"));
+      updateListItems(deletedProject.getAttribute("data-id"));
+      // after updating each projects data-id, remove the marked project
+      projectContainer.removeChild(deletedProject);
+    }
+  }
+});
+
+function removeAllApproraiteListItems(itemNum) {
+  // if no list items, no list items can be removed
+  if (listContainer.firstChild == null) {
+    return;
+  }
+
+  let children = listContainer.children;
+  for (let i = 0; i < children.length; i++) {
+    let child = children[i];
+    if (child.getAttribute("data-id") == itemNum) {
+      listContainer.removeChild(child);
+      i--;
+    }
+  }
+}
+
+// update list items data-id
+function updateListItems(itemNum) {
+  if (listContainer.firstChild == null) {
+    return;
+  }
+  for (
+    let listChild = listContainer.firstChild;
+    listChild !== null;
+    listChild = listChild.nextSibling
+  ) {
+    let updatedListID = listChild.getAttribute("data-id") - 1;
+
+    if (listChild.getAttribute("data-id") > itemNum) {
+      listChild.setAttribute("data-id", updatedListID);
     }
   }
 }
