@@ -207,6 +207,10 @@ export function createForm() {
     todoCap.appendChild(todoDeleteCap);
 
     listContainer.appendChild(todoCap);
+
+    todoDeleteBtn.addEventListener("click", function (e) {
+      listContainer.removeChild(e.target.parentNode.parentNode);
+    });
   }
 
   // temperorialy hide todo-list from UI

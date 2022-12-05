@@ -1,7 +1,7 @@
 import { createForm } from "../createForm";
 import { displayNewProject, addTaskBtn } from "./projects";
 
-const projectBtn = document.querySelector("#project");
+export const projectBtn = document.querySelector("#project");
 
 projectBtn.addEventListener("click", displayNewProject);
 

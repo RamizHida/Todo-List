@@ -4,6 +4,8 @@ import {
   taskNotification,
   allListsItems,
 } from "../createForm";
+import { projectBtn } from ".";
+
 export const projectContainer = document.querySelector(".project--container");
 export const addProjBtn = document.querySelector("#project");
 let errorDiv = document.createElement("div");
@@ -38,7 +40,7 @@ export function displayNewProject() {
     deleteProject.style.display = "block";
 
     if (numOfProjects > 8) {
-      projectDiv.style.display = "none";
+      addProjBtn.style.display = "none";
       projectError("Maximum Number of Projects Reached");
       return;
     }
@@ -170,6 +172,10 @@ function displayCorrectList(project) {
 }
 
 deleteProject.addEventListener("click", function () {
+  if (numOfProjects - 1 == 8) {
+    projectBtn.style.display = "flex";
+  }
+
   let projectMarked = false;
   let deletedProject;
   // check to see if no project in directory
