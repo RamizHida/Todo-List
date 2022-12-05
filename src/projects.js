@@ -3,8 +3,8 @@ import {
   displayList,
   taskNotification,
   allListsItems,
-} from "../createForm";
-import { projectBtn } from ".";
+} from "./createForm";
+import { projectBtn } from "./index";
 
 export const projectContainer = document.querySelector(".project--container");
 export const addProjBtn = document.querySelector("#project");

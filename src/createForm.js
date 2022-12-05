@@ -1,11 +1,20 @@
-import { Todo, todoContainer } from "./src/create.todo";
+// import { Todo, todoContainer } from "./src/create.todo";
+import { Todo, todoContainer } from "./create.todo";
+// import {
+//   addTaskBtn,
+//   addProjBtn,
+//   projectError,
+//   projectContainer,
+//   deleteProject,
+// // } from "./src/projects";
+
 import {
   addTaskBtn,
   addProjBtn,
   projectError,
   projectContainer,
   deleteProject,
-} from "./src/projects";
+} from "./projects";
 
 export let taskNotification = document.querySelector("#task--notification");
 
