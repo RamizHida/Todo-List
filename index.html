@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Get It Done!</title>
+    <title>ToDo App</title>
     <link rel="stylesheet" href="../dist/CSS/normalize.css" />
     <link rel="stylesheet" href="../dist/CSS/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,23 +17,39 @@
   </head>
   <body>
     <div class="header">
+      <h1>You Can Do It! 😎</h1>
       <h1>ToDo Application</h1>
+      <div class="priority--classification">
+        <h2>Priority Chart:</h2>
+        <div class="priorities">
+          <h3>1</h3>
+          <img src="images/priority-1.png" alt="green bar" />
+        </div>
+        <div class="priorities">
+          <h3>2</h3>
+          <img src="images/priority-2.png" alt="yellow bar" />
+        </div>
+        <div class="priorities">
+          <h3>3</h3>
+          <img src="images/priority-3.png" alt="red bar" />
+        </div>
+      </div>
     </div>
     <div class="left--container">
       <h2 id="project--heading">Projects</h2>
       <button id="delete--project--btn">Delete Project</button>
       <button id="project">
         <div>
-          <img src="../src/images/plus-circle.png" alt="plus-circle" />
+          <img src="images/plus-circle.png" alt="plus-circle" />
           <h2>Add Project</h2>
-          <div></div>
+          <!-- <div></div> -->
         </div>
       </button>
       <div class="project--container"></div>
     </div>
     <div id="add--task--container">
       <button class="add--task">
-        <img src="../src/images/plus-circle.png" alt="plus-circle" />
+        <img src="images/plus-circle.png" alt="plus-circle" />
         <h2>Add Task</h2>
       </button>
     </div>
